@@ -88,15 +88,16 @@ public class Pay_Now_Module extends JFrame {
 		JTextArea Due_txt = new JTextArea();
 		Due_txt.setBackground(SystemColor.controlHighlight);
 		Due_txt.setLineWrap(true);
-		Due_txt.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		Due_txt.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		Due_txt.setEditable(false);
 		Due_txt.setBounds(129, 312, 209, 22);
 		contentPane.add(Due_txt);
 		
 		JTextArea Balance_txt = new JTextArea();
+		Balance_txt.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		Balance_txt.setBackground(SystemColor.controlHighlight);
 		Balance_txt.setEditable(false);
-		Balance_txt.setBounds(129, 409, 209, 47);
+		Balance_txt.setBounds(129, 409, 209, 82);
 		contentPane.add(Balance_txt);
 		
 		Amount_txt = new JTextField();
@@ -116,7 +117,7 @@ public class Pay_Now_Module extends JFrame {
 		
 		Ben_name_txt = new JTextField();
 		Ben_name_txt.setBackground(SystemColor.scrollbar);
-		Ben_name_txt.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		Ben_name_txt.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		Ben_name_txt.setBounds(129, 142, 206, 22);
 		contentPane.add(Ben_name_txt);
 		Ben_name_txt.setColumns(10);
@@ -128,7 +129,7 @@ public class Pay_Now_Module extends JFrame {
 		contentPane.add(lblNewLabel_1_1);
 		
 		name_txt = new JTextField();
-		name_txt.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		name_txt.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		name_txt.setColumns(10);
 		name_txt.setBackground(SystemColor.scrollbar);
 		name_txt.setBounds(129, 182, 206, 22);
@@ -160,10 +161,13 @@ public class Pay_Now_Module extends JFrame {
 		contentPane.add(lblNewLabel_9);
 		
 		JTextArea uid_txt = new JTextArea();
+		uid_txt.setFont(new Font("Segoe UI Light", Font.PLAIN, 14));
 		uid_txt.setBounds(87, 77, 173, 22);
 		contentPane.add(uid_txt);
 		
+		
 		JButton search_button = new JButton("Search");
+		search_button.setFont(new Font("Tahoma", Font.BOLD, 11));
 		search_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -194,7 +198,7 @@ public class Pay_Now_Module extends JFrame {
 					
 					if(rs2.next())
 					{
-						Double due =  Double.parseDouble(rs2.getString("sem1_fee")) +  Double.parseDouble(rs2.getString("sem2_fee")) + Double.parseDouble(rs2.getString("exam_fee"));
+						 double due =  Double.parseDouble(rs2.getString("sem1_fee")) +  Double.parseDouble(rs2.getString("sem2_fee")) + Double.parseDouble(rs2.getString("exam_fee"));
 						Due_txt.setText((""+ due));
 					}
 				}
@@ -226,29 +230,62 @@ public class Pay_Now_Module extends JFrame {
 		course_txt.setBounds(129, 225, 209, 22);
 		contentPane.add(course_txt);
 		
-		Checkbox checkbox = new Checkbox("Confirm");
-		checkbox.setBackground(UIManager.getColor("Table.light"));
-		checkbox.setFont(new Font("Times New Roman", Font.BOLD, 13));
-		checkbox.setBounds(279, 505, 95, 22);
-		contentPane.add(checkbox);
-		
-		Checkbox sem1_check = new Checkbox("Semester 1");
-		sem1_check.setBackground(SystemColor.controlHighlight);
-		sem1_check.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		sem1_check.setBounds(413, 261, 115, 39);
-		contentPane.add(sem1_check);
-		
 		Checkbox sem2_check = new Checkbox("Semester 2");
 		sem2_check.setBackground(SystemColor.controlHighlight);
 		sem2_check.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		sem2_check.setBounds(413, 324, 115, 39);
+		sem2_check.setBounds(413, 255, 115, 39);
 		contentPane.add(sem2_check);
 		
 		Checkbox exam_check = new Checkbox("Exam Fee");
 		exam_check.setBackground(SystemColor.controlHighlight);
 		exam_check.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		exam_check.setBounds(414, 385, 114, 39);
+		exam_check.setBounds(414, 310, 114, 39);
 		contentPane.add(exam_check);
+		
+		
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new LineBorder(SystemColor.controlShadow, 3, true));
+		panel_2.setBounds(386, 163, 162, 217);
+		contentPane.add(panel_2);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBorder(new LineBorder(UIManager.getColor("TextField.inactiveBackground"), 4, true));
+		panel_3.setBackground(UIManager.getColor("TextField.darkShadow"));
+		panel_3.setBounds(20, 125, 344, 388);
+		contentPane.add(panel_3);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(UIManager.getColor("Table.light"));
+		panel_4.setBorder(new LineBorder(UIManager.getColor("TextField.foreground"), 1, true));
+		panel_4.setBounds(392, 433, 156, 117);
+		contentPane.add(panel_4);
+		
+		textField = new JTextField();
+		textField.setText("© Rishabh Tiwari\r\n      E-Mail: onlinestuff.rishabh@gmail.com ");
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
+		textField.setEditable(false);
+		textField.setColumns(10);
+		textField.setBackground(SystemColor.menu);
+		textField.setBounds(10, 561, 564, 20);
+		contentPane.add(textField);
+		
+		Checkbox checkbox = new Checkbox("Confirm");
+		checkbox.setBounds(430, 453, 89, 24);
+		contentPane.add(checkbox);
+		checkbox.setBackground(UIManager.getColor("Table.light"));
+		checkbox.setFont(new Font("Times New Roman", Font.BOLD, 13));
+		
+		Checkbox sem1_check = new Checkbox("Semester 1");
+		sem1_check.setBounds(413, 197, 115, 39);
+		contentPane.add(sem1_check);
+		sem1_check.setBackground(SystemColor.controlHighlight);
+		sem1_check.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		
+		Panel panel = new Panel();
+		panel.setBounds(392, 170, 150, 202);
+		contentPane.add(panel);
+		panel.setBackground(SystemColor.activeCaptionBorder);
 		
 		JButton Pay_button = new JButton("Pay");
 		Pay_button.addActionListener(new ActionListener() {
@@ -265,13 +302,15 @@ public class Pay_Now_Module extends JFrame {
 				
 				
 				ResultSet rs1 = ptsmt1.executeQuery();
-				
+				double balance = 00.0;
+				double total_due = Double.parseDouble(Due_txt.getText());
+				String statement = "";
 				if(checkbox.getState()==true) {
 					if(sem1_check.getState()==true) {
 						if(rs1.next()) {
 						double sem1 = rs1.getDouble("sem1_fee");
-						double balance = sem1 - Double.parseDouble(Amount_txt.getText());
-						Balance_txt.setText("Rs. "+ balance);
+						 balance = sem1 - Double.parseDouble(Amount_txt.getText());
+						statement = "Balance for Semester 1 is = " + balance; 
 						String query4= "UPDATE fee_details SET sem1_fee = ? WHERE fee_details.UID = ?";
 						PreparedStatement ptsmtUpdate = conn.prepareStatement(query4);
 						ptsmtUpdate.setDouble(1, balance);
@@ -282,7 +321,8 @@ public class Pay_Now_Module extends JFrame {
 					else if(sem2_check.getState()==true) {
 						if(rs1.next()) {
 						double sem2 = rs1.getDouble("sem2_fee");
-						double balance = sem2 - Double.parseDouble(Amount_txt.getText());
+						 balance = sem2 - Double.parseDouble(Amount_txt.getText());
+						 statement = "Balance for Semester 2 is = " + balance;
 						String query4= "UPDATE fee_details SET sem2_fee = ? WHERE fee_details.UID = ?";
 						PreparedStatement ptsmtUpdate = conn.prepareStatement(query4);
 						ptsmtUpdate.setDouble(1, balance);
@@ -294,8 +334,9 @@ public class Pay_Now_Module extends JFrame {
 					else if(exam_check.getState()==true) {
 						if(rs1.next()) {
 						double exam = rs1.getDouble("exam_fee");
-						double balance = exam - Double.parseDouble(Amount_txt.getText());
-						Balance_txt.setText("Rs. "+ balance);
+						balance = exam - Double.parseDouble(Amount_txt.getText());
+						statement = "Balance for Examination is = " + balance;
+						
 						String query4= "UPDATE fee_details SET exam_fee = ? WHERE fee_details.UID = ?";
 						PreparedStatement ptsmtUpdate = conn.prepareStatement(query4);
 						ptsmtUpdate.setDouble(1, balance);
@@ -306,7 +347,9 @@ public class Pay_Now_Module extends JFrame {
 					else {
 						JOptionPane.showMessageDialog(null, "Please check the box for the type of fees \n --> Sememster 1\n --> Sememster 2\n --> Exam Fee");
 					}
-					
+				
+					total_due -= Double.parseDouble(Amount_txt.getText());
+					Balance_txt.setText(statement + "\n\n Your overall outstanding amount is = " + total_due);
 					JOptionPane.showMessageDialog(null, "Your fees has been submitted!!\n------------------------------\n\t Thank You");
 			}
 				else {
@@ -318,44 +361,25 @@ public class Pay_Now_Module extends JFrame {
 			}
 			}
 		});
+		
+		
+		JButton btnNewButton = new JButton("<-- Back");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new Student_Module().setVisible(true);
+				
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setBounds(29, 535, 89, 23);
+		contentPane.add(btnNewButton);
+		
+		
 		Pay_button.setBackground(new Color(255, 255, 224));
 		Pay_button.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		Pay_button.setBounds(453, 505, 89, 33);
+		Pay_button.setBounds(430, 498, 89, 33);
 		contentPane.add(Pay_button);
-		
-		Panel panel = new Panel();
-		panel.setBackground(SystemColor.activeCaptionBorder);
-		panel.setBounds(394, 236, 154, 215);
-		contentPane.add(panel);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(SystemColor.controlShadow, 3, true));
-		panel_2.setBounds(388, 231, 166, 226);
-		contentPane.add(panel_2);
-		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new LineBorder(UIManager.getColor("TextField.inactiveBackground"), 4, true));
-		panel_3.setBackground(UIManager.getColor("TextField.darkShadow"));
-		panel_3.setBounds(20, 125, 343, 352);
-		contentPane.add(panel_3);
-		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(UIManager.getColor("Table.light"));
-		panel_4.setBorder(new LineBorder(UIManager.getColor("TextField.foreground"), 1, true));
-		panel_4.setBounds(244, 488, 326, 61);
-		contentPane.add(panel_4);
-		
-		textField = new JTextField();
-		textField.setText("© Rishabh Tiwari\r\n      E-Mail: onlinestuff.rishabh@gmail.com ");
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setEditable(false);
-		textField.setColumns(10);
-		textField.setBackground(SystemColor.menu);
-		textField.setBounds(10, 561, 564, 20);
-		contentPane.add(textField);
-		
-		
-		
 			
 	}
 	

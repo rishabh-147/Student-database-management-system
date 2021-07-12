@@ -21,6 +21,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.ComboBoxEditor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
 import javax.swing.UIManager;
@@ -182,6 +183,7 @@ public class Update_Student extends JFrame {
 		checkbox.setBounds(499, 416, 89, 52);
 		contentPane.add(checkbox);
 		
+		
 		JButton btnNewButton = new JButton("Submit");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -193,30 +195,27 @@ public class Update_Student extends JFrame {
 					else {
 						//Get the input selected by the user in the comboBox of State and Course Field.
 						
-						
-						String course = (String)comboBox.getName();						
+								
 						
 						Class.forName("com.mysql.cj.jdbc.Driver");
 						Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/student_database","root","");
 					    
-						String query = "UPDATE `stud_details` SET `UID`=?, `First_name`=?,`last_name`=?,`Father`=?,`Mother`=?,`DOB`=?,`Contact`=?,`E-Mail`=?,`Course`=?,`Section`=?";
+						String query = "UPDATE `stud_details` SET `First_name`=?,`last_name`=?,`Father`=?,`Mother`=?,`DOB`=?,`Contact`=?,`E-Mail`=?,`Course`=?,`Section`=? WHERE `UID`=?";
 					    PreparedStatement ptstmt = conn.prepareStatement(query);
 					   
 					    		//to be used in future updates......
 					    //(firstname_txt.getText(0, 3).toString().toUpperCase()) + (lastname_txt.getText(0, 3).toString().toUpperCase()) + (dob_txt.getText(3,2)) + (dob_txt.getText(0,2)); //Getting the text entered in First Name from 0th index to 3rd index....making UNIQUE ID. This will generate a UID like FOR Rishabh Tiwari born on 18/01/2001 UID will be RISTIW0118.
-					    ptstmt.setString(1, uid_txt.getText());
-					    ptstmt.setString(2, firstname_txt.getText()); //Converting input to string and then storing them in UPPER CASE.
-					    ptstmt.setString(3, lastname_txt.getText());
-					    ptstmt.setString(4, father_txt.getText());
-					    ptstmt.setString(5, mother_txt.getText());
-					    ptstmt.setString(6, dob_txt.getText());
-					    ptstmt.setString(7, contact_txt.getText());
-					    ptstmt.setString(8, mail_txt.getText());
-					    if(!course.equals("Select")) {
-					    ptstmt.setString(9, course);
-					    }
-					    else
-					    ptstmt.setString(10, section_txt.getText());
+					   
+					    ptstmt.setString(1, firstname_txt.getText()); //Converting input to string and then storing them in UPPER CASE.
+					    ptstmt.setString(2, lastname_txt.getText());
+					    ptstmt.setString(3, father_txt.getText());
+					    ptstmt.setString(4, mother_txt.getText());
+					    ptstmt.setString(5, dob_txt.getText());
+					    ptstmt.setString(6, contact_txt.getText());
+					    ptstmt.setString(7, mail_txt.getText());
+					    ptstmt.setString(8, (String)comboBox.getSelectedItem());
+					    ptstmt.setString(9, section_txt.getText());
+					    ptstmt.setString(10, uid_txt.getText());
 					   
 					    ptstmt.executeUpdate();
 					    JOptionPane.showMessageDialog(null, "Successfully Updated the Student's details in the record.");
@@ -276,6 +275,7 @@ public class Update_Student extends JFrame {
 					contact_txt.setText(resultset.getString("Contact"));
 					mail_txt.setText(resultset.getString("E-Mail"));
 					section_txt.setText(resultset.getString("Section"));
+					comboBox.setSelectedItem(resultset.getString("Course"));
 					} 
 				}
 				catch(Exception e2){
@@ -333,3 +333,9 @@ public class Update_Student extends JFrame {
 	
 	}
 }
+/*
+Why do you  come to me every night
+why do I see you in my dreamy sight..
+Why can't we just wash off that memory lane....
+Why can't we just dissolve that  pain....
+*/
