@@ -26,7 +26,8 @@ public class splashScreen extends JWindow {
       g.drawImage(splashScreen, 0, 0, this);
    }
    public static void main(String[]args) {
-      splashScreen splash = new splashScreen();
+	   
+	   splashScreen splash = new splashScreen();
       try {
          // Make JWindow appear for 10 seconds before disappear
          Thread.sleep(10000);

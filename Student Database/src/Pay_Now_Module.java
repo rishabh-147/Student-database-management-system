@@ -28,6 +28,9 @@ import java.awt.Panel;
 import javax.swing.border.LineBorder;
 import javax.swing.UIManager;
 import java.awt.Toolkit;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.MatteBorder;
 
 public class Pay_Now_Module extends JFrame {
 
@@ -94,7 +97,7 @@ public class Pay_Now_Module extends JFrame {
 		contentPane.add(Due_txt);
 		
 		JTextArea Balance_txt = new JTextArea();
-		Balance_txt.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		Balance_txt.setFont(new Font("Microsoft YaHei", Font.PLAIN, 12));
 		Balance_txt.setBackground(SystemColor.controlHighlight);
 		Balance_txt.setEditable(false);
 		Balance_txt.setBounds(129, 409, 209, 82);
@@ -242,24 +245,11 @@ public class Pay_Now_Module extends JFrame {
 		exam_check.setBounds(414, 310, 114, 39);
 		contentPane.add(exam_check);
 		
-		
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(SystemColor.controlShadow, 3, true));
-		panel_2.setBounds(386, 163, 162, 217);
-		contentPane.add(panel_2);
-		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new LineBorder(UIManager.getColor("TextField.inactiveBackground"), 4, true));
 		panel_3.setBackground(UIManager.getColor("TextField.darkShadow"));
 		panel_3.setBounds(20, 125, 344, 388);
 		contentPane.add(panel_3);
-		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(UIManager.getColor("Table.light"));
-		panel_4.setBorder(new LineBorder(UIManager.getColor("TextField.foreground"), 1, true));
-		panel_4.setBounds(392, 433, 156, 117);
-		contentPane.add(panel_4);
 		
 		textField = new JTextField();
 		textField.setText("© Rishabh Tiwari\r\n      E-Mail: onlinestuff.rishabh@gmail.com ");
@@ -281,11 +271,6 @@ public class Pay_Now_Module extends JFrame {
 		contentPane.add(sem1_check);
 		sem1_check.setBackground(SystemColor.controlHighlight);
 		sem1_check.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		
-		Panel panel = new Panel();
-		panel.setBounds(392, 170, 150, 202);
-		contentPane.add(panel);
-		panel.setBackground(SystemColor.activeCaptionBorder);
 		
 		JButton Pay_button = new JButton("Pay");
 		Pay_button.addActionListener(new ActionListener() {
@@ -322,7 +307,7 @@ public class Pay_Now_Module extends JFrame {
 						if(rs1.next()) {
 						double sem2 = rs1.getDouble("sem2_fee");
 						 balance = sem2 - Double.parseDouble(Amount_txt.getText());
-						 statement = "Balance for Semester 2 is = " + balance;
+						 statement = "Balance for 2nd Semester is= " + balance;
 						String query4= "UPDATE fee_details SET sem2_fee = ? WHERE fee_details.UID = ?";
 						PreparedStatement ptsmtUpdate = conn.prepareStatement(query4);
 						ptsmtUpdate.setDouble(1, balance);
@@ -349,7 +334,7 @@ public class Pay_Now_Module extends JFrame {
 					}
 				
 					total_due -= Double.parseDouble(Amount_txt.getText());
-					Balance_txt.setText(statement + "\n\n Your overall outstanding amount is = " + total_due);
+					Balance_txt.setText(statement + "\nYour overall \noutstanding amount is = " + total_due);
 					JOptionPane.showMessageDialog(null, "Your fees has been submitted!!\n------------------------------\n\t Thank You");
 			}
 				else {
@@ -380,6 +365,23 @@ public class Pay_Now_Module extends JFrame {
 		Pay_button.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		Pay_button.setBounds(430, 498, 89, 33);
 		contentPane.add(Pay_button);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBounds(392, 423, 156, 127);
+		contentPane.add(panel_4);
+		panel_4.setBackground(UIManager.getColor("Table.light"));
+		panel_4.setBorder(new LineBorder(UIManager.getColor("TextField.foreground"), 1, true));
+		
+		JPanel panel_4_1 = new JPanel();
+		panel_4_1.setBorder(new LineBorder(UIManager.getColor("TextField.foreground"), 1, true));
+		panel_4_1.setBackground(SystemColor.controlShadow);
+		panel_4_1.setBounds(392, 167, 156, 200);
+		contentPane.add(panel_4_1);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new MatteBorder(3, 3, 3, 3, (Color) SystemColor.textInactiveText));
+		panel.setBounds(386, 161, 167, 212);
+		contentPane.add(panel);
 			
 	}
 	
