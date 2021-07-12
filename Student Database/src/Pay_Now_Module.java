@@ -253,7 +253,7 @@ public class Pay_Now_Module extends JFrame {
 		JButton Pay_button = new JButton("Pay");
 		Pay_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
+				
 			try {	Class.forName("com.mysql.cj.jdbc.Driver");
 				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/student_database","root","");
 			
@@ -270,7 +270,7 @@ public class Pay_Now_Module extends JFrame {
 					if(sem1_check.getState()==true) {
 						if(rs1.next()) {
 						double sem1 = rs1.getDouble("sem1_fee");
-						double balance = sem1 - Double.parseDouble(Due_txt.getText());
+						double balance = sem1 - Double.parseDouble(Amount_txt.getText());
 						Balance_txt.setText("Rs. "+ balance);
 						String query4= "UPDATE fee_details SET sem1_fee = ? WHERE fee_details.UID = ?";
 						PreparedStatement ptsmtUpdate = conn.prepareStatement(query4);
@@ -282,7 +282,7 @@ public class Pay_Now_Module extends JFrame {
 					else if(sem2_check.getState()==true) {
 						if(rs1.next()) {
 						double sem2 = rs1.getDouble("sem2_fee");
-						double balance = sem2 - Double.parseDouble(Due_txt.getText());
+						double balance = sem2 - Double.parseDouble(Amount_txt.getText());
 						String query4= "UPDATE fee_details SET sem2_fee = ? WHERE fee_details.UID = ?";
 						PreparedStatement ptsmtUpdate = conn.prepareStatement(query4);
 						ptsmtUpdate.setDouble(1, balance);
@@ -294,7 +294,7 @@ public class Pay_Now_Module extends JFrame {
 					else if(exam_check.getState()==true) {
 						if(rs1.next()) {
 						double exam = rs1.getDouble("exam_fee");
-						double balance = exam - Double.parseDouble(Due_txt.getText());
+						double balance = exam - Double.parseDouble(Amount_txt.getText());
 						Balance_txt.setText("Rs. "+ balance);
 						String query4= "UPDATE fee_details SET exam_fee = ? WHERE fee_details.UID = ?";
 						PreparedStatement ptsmtUpdate = conn.prepareStatement(query4);

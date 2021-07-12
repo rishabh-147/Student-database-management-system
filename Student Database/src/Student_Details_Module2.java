@@ -250,7 +250,7 @@ public class Student_Details_Module2 extends JFrame {
 				if(resultset1.next()) 
 					{
 					uid_txt.setText(resultset1.getString("UID"));
-					name_txt.setText(resultset1.getString("First_name") + resultset1.getString("last_name"));
+					name_txt.setText(resultset1.getString("First_name") +" "+ resultset1.getString("last_name"));
 					father_txt.setText(resultset1.getString("Father"));
 					mother_txt.setText(resultset1.getString("Mother"));
 					dob_txt.setText(resultset1.getString("DOB"));
@@ -263,7 +263,7 @@ public class Student_Details_Module2 extends JFrame {
 					}
 				if(resultset2.next())
 				{
-					fee_due_txt.setText(""+ (resultset2.getDouble("sem1_fee") + resultset2.getDouble("sem2_fee")));
+					fee_due_txt.setText(""+ (resultset2.getDouble("sem1_fee") + resultset2.getDouble("sem2_fee") + resultset2.getDouble("exam_fee")));
 				}
 				}
 				catch(Exception e2){
@@ -315,9 +315,15 @@ public class Student_Details_Module2 extends JFrame {
 							
 							Class.forName("com.mysql.cj.jdbc.Driver");
 							Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/student_database", "root", "");
-							String query = "DELETE FROM stud_details WHERE stud_details.UID = '"+uid_txt.getText()+"'";
-							PreparedStatement ptsmt = conn.prepareStatement(query);
-							ptsmt.execute();
+							//Delete from the stud_details table
+							String query1 = "DELETE FROM stud_details WHERE stud_details.UID = '"+uid_txt.getText()+"'";
+							PreparedStatement ptsmt1 = conn.prepareStatement(query1);
+							ptsmt1.execute();
+							
+							//Delete from the fee_details table.
+							String query2 = "DELETE FROM fee_details WHERE fee_details.UID = '"+uid_txt.getText()+"'";
+							PreparedStatement ptsmt2 = conn.prepareStatement(query2);
+							ptsmt2.execute();
 							JOptionPane.showMessageDialog(null, "The record has been successfully deleted.");
 							
 						}catch(Exception e1){

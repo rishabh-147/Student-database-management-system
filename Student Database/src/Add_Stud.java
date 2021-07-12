@@ -228,7 +228,7 @@ public class Add_Stud extends JFrame {
 					    ptstmt.setString(5, MotherName_txt.getText().toUpperCase());
 					    ptstmt.setString(6, dob_txt.getText().toUpperCase());
 					    ptstmt.setString(7, contact_txt.getText().toUpperCase());
-					    ptstmt.setString(8, Email_txt.getText().toUpperCase());
+					    ptstmt.setString(8, Email_txt.getText());
 					    ptstmt.setString(9, address_txt.getText().toUpperCase());
 					    ptstmt.setString(10, state);
 					    ptstmt.setString(11, course);

@@ -120,37 +120,37 @@ public class Update_Student extends JFrame {
 		contentPane.add(lblNewLabel_10);
 		
 		JTextArea uid_txt = new JTextArea();
-		uid_txt.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		uid_txt.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		uid_txt.setBounds(144, 99, 178, 22);
 		contentPane.add(uid_txt);
 		
 		JTextArea firstname_txt = new JTextArea();
-		firstname_txt.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		firstname_txt.setFont(new Font("Times New Roman", Font.BOLD, 13));
 		firstname_txt.setBounds(159, 166, 217, 22);
 		contentPane.add(firstname_txt);
 		
 		JTextArea dob_txt = new JTextArea();
-		dob_txt.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		dob_txt.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		dob_txt.setBounds(159, 336, 217, 22);
 		contentPane.add(dob_txt);
 		
 		JTextArea father_txt = new JTextArea();
-		father_txt.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		father_txt.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		father_txt.setBounds(159, 296, 217, 22);
 		contentPane.add(father_txt);
 		
 		JTextArea mail_txt = new JTextArea();
-		mail_txt.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		mail_txt.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
 		mail_txt.setBounds(159, 431, 217, 22);
 		contentPane.add(mail_txt);
 		
 		JTextArea mother_txt = new JTextArea();
-		mother_txt.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		mother_txt.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		mother_txt.setBounds(159, 257, 217, 22);
 		contentPane.add(mother_txt);
 		
 		JTextArea contact_txt = new JTextArea();
-		contact_txt.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		contact_txt.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		contact_txt.setBounds(159, 381, 217, 22);
 		contentPane.add(contact_txt);
 		
@@ -172,7 +172,7 @@ public class Update_Student extends JFrame {
 		contentPane.add(lblNewLabel_1_1);
 		
 		JTextArea lastname_txt = new JTextArea();
-		lastname_txt.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		lastname_txt.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lastname_txt.setBounds(159, 213, 217, 22);
 		contentPane.add(lastname_txt);
 		
@@ -194,8 +194,7 @@ public class Update_Student extends JFrame {
 						//Get the input selected by the user in the comboBox of State and Course Field.
 						
 						
-						String course = (String)comboBox.getSelectedItem();
-						
+						String course = (String)comboBox.getName();						
 						
 						Class.forName("com.mysql.cj.jdbc.Driver");
 						Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/student_database","root","");
@@ -213,7 +212,10 @@ public class Update_Student extends JFrame {
 					    ptstmt.setString(6, dob_txt.getText());
 					    ptstmt.setString(7, contact_txt.getText());
 					    ptstmt.setString(8, mail_txt.getText());
+					    if(!course.equals("Select")) {
 					    ptstmt.setString(9, course);
+					    }
+					    else
 					    ptstmt.setString(10, section_txt.getText());
 					   
 					    ptstmt.executeUpdate();
